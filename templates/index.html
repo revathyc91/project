@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><html >
+    <!--From https://codepen.io/frytyler/pen/EGdtg-->
+    <head>
+      <meta charset="UTF-8">
+      <title>ML API</title>
+      
+    </head>
+
+
+    <style>
+        body{
+            background-color:#b0d1e0;
+        }
+        .head-title h1{
+        font-family: 'Architects Daughter', cursive;
+             color:#2b2e4a;
+            font-size:50px;
+        }
+          </style>
+      
+
+<!-- Input Form -->
+<div>
+<div  class="input form" >
+  <form action="{{url_for('predict')}}"method="post" id="input head">
+     <h1 id="heading" style="text-align:center">Weather Prediction Form</h1>
+    <div style="text-align:center">
+     <select name="Location" id="Cars">
+        <option selected>Select Location</option>
+        <option value=0>Albury</option>
+                              <option value=1>BadgerysCreek</option>
+                              <option value=2>Cobar</option>
+                              <option value=3>CoffsHarbour</option>
+                              <option value=4>Moree</option>
+                              <option value=5>Newcastle</option>
+                              <option value=6>NorahHead</option>
+                              <option value=7>NorfolkIsland</option>
+                              <option value=8>Penrith</option>
+                              <option value=9>Richmond</option>
+                              <option value=10>Sydney</option>
+                              <option value=11>SydneyAirport</option>
+                              <option value=12>WaggaWagga</option>
+                              <option value=13>Williamtown</option>
+                              <option value=14>Wollongong</option>
+                              <option value=15>Canberra</option>
+                              <option value=16>Tuggeranong</option>
+                              <option value=17>MountGinini</option>
+                              <option value=18>Ballarat</option>
+                              <option value=19>Bendigo</option>
+                              <option value=20>Sale</option>
+                              <option value=21>MelbourneAirport</option>
+                              <option value=22>Melbourne</option>
+                              <option value=23>Mildura</option>
+                              <option value=24>Nhil</option>
+                              <option value=25>Portland</option>
+                              <option value=26>Watsonia</option>
+                              <option value=27>Dartmoor</option>
+                              <option value=28>Brisbane</option>
+                              <option value=29>Cairns</option>
+                              <option value=30>GoldCoast</option>
+                              <option value=31>Townsville</option>
+                              <option value=32>Adelaide</option>
+                              <option value=33>MountGambier</option>
+                              <option value=34>Nuriootpa</option>
+                              <option value=35>Woomera</option>
+                              <option value=36>Albany</option>
+                              <option value=37>Witchcliffe</option>
+                              <option value=38>PearceRAAF</option>
+                              <option value=39>PerthAirport</option>
+                              <option value=40>Perth</option>
+                              <option value=41>SalmonGums</option>
+                              <option value=42>Walpole</option>
+                              <option value=43>Hobart</option>
+                              <option value=44>Launceston</option>
+                              <option value=45>AliceSprings</option>
+                              <option value=46>Darwin</option>
+                              <option value=47>Katherine</option>
+                              <option value=48>Uluru</option>
+      </select>
+    <br>
+    <br>
+    <div>
+        <select class="dropdown" name="windgustdir" aria-label="Location">
+            <option selected>Select Wind Gust Direction</option>
+            <option value=0>W</option>
+            <option value=1>WNW</option>
+            <option value=2>WSW</option>
+            <option value=3>NE</option>
+            <option value=4>NNW</option>
+            <option value=5>N</option>
+            <option value=6>NNE</option>
+            <option value=7>SW</option>
+            <option value=8>ENE</option>
+            <option value=9>SSE</option>
+            <option value=10>S</option>
+            <option value=11>NW</option>
+            <option value=12>SE</option>
+            <option value=13>ESE</option>
+            <option value=14>E</option>
+            <option value=15>SSW</option>
+      </select>
+    </div>
+    <br>
+    <div>
+        <select class="dropdown" name="winddir9am" aria-label="Location">
+            <option selected>Select Wind Gust Direction at 9am</option>
+            <option value=0>W</option>
+            <option value=1>WNW</option>
+            <option value=2>WSW</option>
+            <option value=3>NE</option>
+            <option value=4>NNW</option>
+            <option value=5>N</option>
+            <option value=6>NNE</option>
+            <option value=7>SW</option>
+            <option value=8>ENE</option>
+            <option value=9>SSE</option>
+            <option value=10>S</option>
+            <option value=11>NW</option>
+            <option value=12>SE</option>
+            <option value=13>ESE</option>
+            <option value=14>E</option>
+            <option value=15>SSW</option>
+      </select>
+    </div>
+    <br>
+    <div>
+        <select class="dropdown" name="winddir3pm" aria-label="Location">
+            <option selected>Select Wind Gust Direction at 3pm</option>
+            <option value=0>W</option>
+            <option value=1>WNW</option>
+            <option value=2>WSW</option>
+            <option value=3>NE</option>
+            <option value=4>NNW</option>
+            <option value=5>N</option>
+            <option value=6>NNE</option>
+            <option value=7>SW</option>
+            <option value=8>ENE</option>
+            <option value=9>SSE</option>
+            <option value=10>S</option>
+            <option value=11>NW</option>
+            <option value=12>SE</option>
+            <option value=13>ESE</option>
+            <option value=14>E</option>
+            <option value=15>SSW</option>
+      </select>
+    </div>
+    <br>
+    <br>
+    <div class="form-style-agile">
+        <label>Maximum Temperature</label>
+            <div class="pom-agile">
+                <input placeholder="Maximum Temperature(Ex: 23.22)" name="maxtemp" type="text" required="">
+            </div> <br>
+        <div class="form-style-agile">
+        <label>Wind Gust Speed</label>
+            <div class="pom-agile">
+                <input placeholder="Wind Gust Speed(Ex: 40.035)" name="windgustspeed" type="text" required="">
+            </div><br>
+   
+       
+   <div class="form-style-agile">
+         <label>Humidity 3pm</label>
+             <div class="pom-agile">
+                 <input placeholder="Humidity 3pm(Ex: 51.53)" name="humidity3pm" type="text" required="">
+             </div><br>
+   
+   <div class="form-style-agile">
+          <label>Pressure 3pm</label>
+               <div class="pom-agile">
+                   <input placeholder="Pressure 3pm(Ex: 1015.255)" name="pressure3pm" type="text" required="">
+               </div><br>
+  
+   
+   <div class="form-style-agile">
+          <label>Did it Rain Today?</label>
+               <div class="pom-agile">
+                   <select class="dropdown" id="raintoday" name="raintoday" aria-label="Rain Today">
+                     <option selected>Did it Rain Today?</option>
+                     <option value= 1>Yes</option>
+                     <option value= 0>No</option>
+                   </select>
+               </div><br>
+
+           <input type="Submit" value="Predict">
+           
+   </form></td>
+</div>
+</div>
+</style
+</div>
+
+  </form>
+ 
+</div>
+   
+</body>
+</html>
